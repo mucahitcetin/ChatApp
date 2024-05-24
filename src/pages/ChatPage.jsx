@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   addDoc,
   serverTimestamp,
@@ -13,6 +13,8 @@ import Message from "../components/Message";
 
 const ChatPage = ({ room, setRoom }) => {
   const [messages, setMessages] = useState([]);
+  const lastMsg = useRef();
+
   // mesaj gönderme fonksiyonu
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -65,6 +67,12 @@ const ChatPage = ({ room, setRoom }) => {
       };
     });
   }, []);
+
+  // yeni mesaj gönderilme olayını izle
+  useEffect(() => {
+    lastMsg.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div className="chat-page">
       <header>
@@ -74,7 +82,12 @@ const ChatPage = ({ room, setRoom }) => {
       </header>
       <main>
         {messages.length > 0 ? (
-          messages.map((data, i) => <Message data={data} key={i} />)
+          <>
+            {messages.map((data, i) => (
+              <Message data={data} key={i} />
+            ))}
+            <div ref={lastMsg} />
+          </>
         ) : (
           <p className="warn">
             Henüz hiç mesaj gönderilmedi. İlk mesajı siz gönderiniz.
