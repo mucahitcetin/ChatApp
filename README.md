@@ -13,6 +13,7 @@ Firebase, kullanıcı oturumlarını yönetir, odalara katılma işlemlerini ger
 Bu proje, Firebase'in kullanımını ve React ile nasıl entegre edilebileceğini gösterir. Uygulamanın basitliği, kullanıcıların hızla anlamalarına ve kullanmalarına yardımcı olur. Uygulama, daha karmaşık özellikler ve geliştirmeler için bir temel sağlar.
 
 <h2>Teknolojiler ve Kütüphaneler</h2>
+
 - React
 - React Router Dom
 - Firebase
